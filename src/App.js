@@ -1,8 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import './getProducts'
+import React from "react";
 
 function App() {
+
+  const getProducts = () => (
+      <div className="trikot">
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">Borussia Mönchengladbach Heim 22/23</h5>
+            <p className="card-text">Heimtrikot von Borussia Mönchengladbach der Bundesligasaison 22/23</p>
+            <a href="#" className="btn btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+  );
+
   return (
     <div className="trikot25">
       <nav className="navbar navbar-expand-lg bg-light">
@@ -26,7 +39,7 @@ function App() {
 
       <div className="products">
 
-        <getProducts />
+        {getProducts()}
 
       </div>
     </div>
