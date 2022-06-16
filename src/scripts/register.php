@@ -9,11 +9,11 @@ if(isset($postdata) && !empty($postdata)){
     $request = json_decode($postdata);
 
 
-    $fname = $request->firstname;
-    $lname = $request->lastname;
-    $email = $request->mail;
+    $firstname = $request->firstname;
+    $lastname = $request->lastname;
+    $mail = $request->mail;
     $password = $request->password;
-    $sql = "INSERT INTO users (firstname, lastname, mail, password) VALUES ('$fname', '$lname','$email','$password')";
+    $sql = "INSERT INTO user (firstname, lastname, mail, password) VALUES ('$firstname', '$lastname','$mail','$password')";
     if(mysqli_query($db,$sql)){
         http_response_code(201);
     }

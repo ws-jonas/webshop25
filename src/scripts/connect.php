@@ -1,7 +1,7 @@
 <?php
-$servername = "db4free.net";
-$username = "testnutzer123";
-$password = "mönchengladbach";
+$servername = "localhost";
+$username = "test";
+$password = "";
 $database= "trikot25";
 
 // Create connection
