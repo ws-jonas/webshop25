@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export function productDetails(){
+export function EditProduct(){
 
     return(
         <div className="productEditPage">

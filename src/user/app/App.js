@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+import logo from '../../testFiles/logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import {productDetails} from "./productDetails";
+import {productDetails} from "../details/productDetails";
 import {Link} from "react-router-dom";
-import gladbach from "./Gladbach.webp";
-import bayern from "./Bayern.avif";
+import gladbach from "../../testFiles/Gladbach.webp";
+import bayern from "../../testFiles/Bayern.avif";
 
 function App() {
 
@@ -15,10 +15,9 @@ function App() {
         const data = [];
         const test = "Heimtrikot Borussia Mönchengladbach";
         const test2 = "Bayerntrikot"
-        data.push({name: test, description: test, image: gladbach});
-        data.push({name: test2, description: test2, image: bayern});
-        const filteredData = data.filter(obj => {return obj.name.includes(searchValue)})
-        setProducts(filteredData);
+        data.push({productid: "1", name: test, description: test, image: gladbach});
+        data.push({productid: "2", name: test2, description: test2, image: bayern});
+        setProducts(data);
     }, []);
 
     function changeSearch(value){
@@ -52,24 +51,7 @@ function App() {
     return (
     <div className="trikot25">
 
-      <nav className="navbar navbar-expand-lg bg-light">
-        <div className="container-fluid">
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-              <input placeholder={"Suche dein Trikot"} onChange={event => setSearchValue(event.target.value)}/>
-
-
-
-          </div>
-          <button className="btn btn-outline-success loginButton" type="submit">Login</button>
-
-        </div>
-
-      </nav>
-
+      <input placeholder={"Suche dein Trikot"} onChange={event => setSearchValue(event.target.value)}/>
       <div>
           {getProducts()}
       </div>
