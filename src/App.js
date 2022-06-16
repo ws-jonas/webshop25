@@ -1,49 +1,81 @@
 import logo from './logo.svg';
 import './App.css';
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import {productDetails} from "./productDetails";
+import {Link} from "react-router-dom";
+import gladbach from "./Gladbach.webp";
+import bayern from "./Bayern.avif";
 
 function App() {
 
-  const getProducts = () => (
-      <div className="trikot">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Borussia Mönchengladbach Heim 22/23</h5>
-            <p className="card-text">Heimtrikot von Borussia Mönchengladbach der Bundesligasaison 22/23</p>
-            <a href="#" className="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-  );
+    const [products, setProducts] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
 
-  return (
+    useEffect(() => {
+        const data = [];
+        const test = "Heimtrikot Borussia Mönchengladbach";
+        const test2 = "Bayerntrikot"
+        data.push({name: test, description: test, image: gladbach});
+        data.push({name: test2, description: test2, image: bayern});
+        const filteredData = data.filter(obj => {return obj.name.includes(searchValue)})
+        setProducts(filteredData);
+    }, []);
+
+    function changeSearch(value){
+        setSearchValue(value);
+    }
+
+    const getProducts = () => (
+        <div>
+        {
+            products && products.filter((val) => {
+                if (searchValue == "") {
+                    return val
+                } else if (val.name.toLowerCase().includes(searchValue.toLowerCase())) {
+                    return val
+                }
+                }).map(product=>{
+                return(
+                    <div className="trikot">
+                        <div className="card-body">
+                            <h5 className="card-title">{product.name}</h5>
+                            <img src={product.image} alt={product.name} height="100"/>
+                            <p className="card-text">{product.description}</p>
+                            <Link to="/productDetails" state={product}><button>Details</button></Link>
+                        </div>
+                    </div>
+                )})
+        }
+        </div>
+    );
+
+    return (
     <div className="trikot25">
+
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">Online Shop</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                   aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
+              <input placeholder={"Suche dein Trikot"} onChange={event => setSearchValue(event.target.value)}/>
+
+
 
           </div>
-          <i className="fa-solid fa-basket-shopping warenkorb"></i>
           <button className="btn btn-outline-success loginButton" type="submit">Login</button>
+
         </div>
+
       </nav>
 
-      <div className="products">
-
-        {getProducts()}
-
+      <div>
+          {getProducts()}
       </div>
+
     </div>
-  );
+    );
 }
 
 export default App;
