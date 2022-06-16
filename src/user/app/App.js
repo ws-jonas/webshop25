@@ -36,12 +36,15 @@ function App() {
                 }).map(product=>{
                 return(
                     <view className="trikot">
-                        <div className="card-body">
-                            <h5 className="card-title">{product.name}</h5>
-                            <img src={product.image} alt={product.name} height="100"/>
-                            <p className="card-text">{product.description}</p>
-                            <Link to="/productDetails" state={product}><button className="detailsButton">Details</button></Link>
-                        </div>
+                        <h3 className="product-title">
+                            {product.name}
+                        </h3>
+                        <view className="p-details">
+                            <text className="text">{product.description}</text>
+                            <img className="product-image" src={product.image} alt={product.name} height="100"/>
+
+                        </view>
+                        <Link to="/productDetails" state={product}><button className="detailsButton">Details</button></Link>
                     </view>
                 )})
         }
@@ -51,7 +54,7 @@ function App() {
     return (
     <div className="trikot25">
 
-      <input placeholder={"Suche dein Trikot"} onChange={event => setSearchValue(event.target.value)}/>
+      <input className="search-bar" placeholder={"Suche dein Trikot"} onChange={event => setSearchValue(event.target.value)}/>
       <div>
           {getProducts()}
       </div>

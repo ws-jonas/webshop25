@@ -30,15 +30,45 @@
 
 .trikot{
   background-color: #F0F0F0;
-  border-width: medium;
-  border-color: #181818;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+.product-image{
+  display: inline;
+  float: right;
+
+}
+.text{
+  display: inline;
+  float: right;
+  width: 55%;
+  text-align: left;
+}
+.product-title{
+  width:100%;
+  float: top;
+}
+
+.p-details{
+  width: 100%;
+}
+
+.search-bar{
   display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .detailsButton{
   display:flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 @keyframes App-logo-spin {

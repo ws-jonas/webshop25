@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {ProductDetails} from "./user/details/productDetails";
 import {Login} from "./user/login/login";
 import {AdminDashboard} from "./admin/dashboard/adminDashboard";
+import {AddProduct} from "./admin/products/addProduct";
+import {EditProduct} from "./admin/products/editProduct";
+import {UserAdministration} from "./admin/userAdministration";
 import {Register} from "./user/login/register";
 import {ShoppingCart} from "./user/cart/shoppingCart";
 import {
@@ -28,6 +31,9 @@ root.render(
               <Route path="/dashboard" element={<AdminDashboard />}/>
               <Route path="/shoppingCart" element={<ShoppingCart />}/>
               <Route path="/productDetails" element={<ProductDetails />}/>
+              <Route path="/user" element={<UserAdministration />}/>
+              <Route path="/addP" element={<AddProduct />}/>
+              <Route path="/editP" element={<EditProduct />}/>
           </Routes>
       </BrowserRouter>
   </React.StrictMode>

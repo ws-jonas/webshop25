@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from "react-router-dom";
 
 export function AdminDashboard(){
 
@@ -21,7 +22,8 @@ export function AdminDashboard(){
         <div>
             <canvas id="productSales" width={"300"} height={"500"} onClick={createSoldProductsChart}>
             </canvas>
-
+            <Link to={"/user"}><button className="user-button">User</button></Link>
+            <Link to={"/addP"}><button className="user-button">Produkt hinzufügen</button></Link>
         </div>
     );
 }

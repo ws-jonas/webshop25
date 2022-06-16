@@ -1,0 +1,26 @@
+.productDetailsPage{
+    width: 100%;
+    display: flex;
+}
+.productImages{
+    display: inline;
+    float: left;
+    width: 49%;
+}
+.productInformation{
+    display: inline;
+    float: left;
+    width: 49%;
+}
+.comments{
+    display: inline;
+    width: 100%;
+}
+.addComment{
+    width:100%;
+}
+.comment-input{
+    width:100%;
+    text-align: center;
+    min-height: 50px;
+}
