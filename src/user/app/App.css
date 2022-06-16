@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+.trikot{
+  background-color: #F0F0F0;
+  border-width: medium;
+  border-color: #181818;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.detailsButton{
+  display:flex;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

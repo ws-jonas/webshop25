@@ -1,0 +1,57 @@
+.navbar{
+    align-items: center;
+    justify-content: center;
+    background-color: #F0F0F0;
+    min-height: 50px;
+    display: flex;
+    font-size: calc(10px + 2vmin);
+}
+.logoButton{
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    elevation: 3deg;
+    background-color: #FFFFFF;
+    border-color: #181818;
+    border-width: 2px;
+}
+.loginButton{
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    elevation: 3deg;
+    background-color: #FFFFFF;
+    border-color: #181818;
+    border-width: 2px;
+}
+.registerButton{
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    elevation: 3deg;
+    background-color: #FFFFFF;
+    border-color: #181818;
+    border-width: 2px;
+}
+.cartButton{
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    elevation: 3deg;
+    background-color: #FFFFFF;
+    border-color: #181818;
+    border-width: 2px;
+}
+.dashboardButton{
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    elevation: 3deg;
+    background-color: #FFFFFF;
+    border-color: #181818;
+    border-width: 2px;
+}
+.menuButtons{
+    display: flex;
+    justify-content: flex-end;
+}

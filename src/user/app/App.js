@@ -35,14 +35,14 @@ function App() {
                 }
                 }).map(product=>{
                 return(
-                    <div className="trikot">
+                    <view className="trikot">
                         <div className="card-body">
                             <h5 className="card-title">{product.name}</h5>
                             <img src={product.image} alt={product.name} height="100"/>
                             <p className="card-text">{product.description}</p>
-                            <Link to="/productDetails" state={product}><button>Details</button></Link>
+                            <Link to="/productDetails" state={product}><button className="detailsButton">Details</button></Link>
                         </div>
-                    </div>
+                    </view>
                 )})
         }
         </div>
