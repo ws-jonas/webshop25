@@ -8,19 +8,12 @@ ToDo:
 
     -skript Nutzer abrufen
     -skript Nutzer löschen
-    -skript Nutzer hinzufügen
 
     -skript gekaufte Produkte abrufen
     -skript gekauftes Produkt hinzufügen
 
     -skript Kommentare abrufen
     -skript Kommentar hinzufügen
-
--Veränderung der Oberfläche je nach Nutzertyp (admin, Kunde)
-    -Oberfläche für admin mit Navigation zu
-        -Nutzerübersicht
-        -Produkt erstellen
-        -Produkt bearbeiten
 
 -Oberfläche Kommentar hinzufügen
 

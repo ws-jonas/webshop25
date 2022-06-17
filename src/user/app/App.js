@@ -1,28 +1,32 @@
 import logo from '../../testFiles/logo.svg';
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {productDetails} from "../details/productDetails";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import gladbach from "../../testFiles/Gladbach.webp";
 import bayern from "../../testFiles/Bayern.avif";
+import {UserContext} from "../../index";
+import axios from "axios";
+
+
 
 function App() {
 
+    const location = useLocation();
+    const {user, setUser} = useContext(UserContext);
+
     const [products, setProducts] = useState([]);
+
     const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
-        const data = [];
-        const test = "Heimtrikot Borussia Mönchengladbach";
-        const test2 = "Bayerntrikot"
-        data.push({productid: "1", name: test, description: test, image: gladbach});
-        data.push({productid: "2", name: test2, description: test2, image: bayern});
-        setProducts(data);
-    }, []);
+        axios.post('http://localhost/getProduct.php')
+            .then((res) => {
 
-    function changeSearch(value){
-        setSearchValue(value);
-    }
+                console.log(res.data.substring("Connected successfully".length).slice(1, -1));
+                setProducts(JSON.parse(res.data.substring("Connected successfully".length).slice(1, -1)));
+            });
+    }, []);
 
     const getProducts = () => (
         <div>
