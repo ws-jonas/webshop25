@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useContext, useState} from 'react';
+import axios from "axios";
+import {useNavigate } from "react-router-dom";
+import {UserContext} from "../../index";
 
 export function Login(){
 
@@ -45,14 +48,15 @@ export function Login(){
     return(
 
         <div>
-            <p>Login</p>
-            <form action="../../scripts/login.php">
-                <label>Username/ Email</label>
-                <input type="email" id="username" name="username" placeholder="Email-Adresse"/>
+
+            <form onSubmit={onSubmit}>
+                <h1>Login</h1>
+                <label>Email</label>
+                <input type="email" id="mail" name="mail" placeholder="Email-Adresse" onChange={handleChange} value={data.mail}/>
                 <br/>
                 <label>Passwort</label>
-                <input type="text" id="passwort" placeholder="Passwort" name="passwort" />
-                <input type="submit" value="submit"/>
+                <input type="password" id="password" placeholder="Passwort" name="password" onChange={handleChange} value={data.password}/>
+                <input type="submit" value="submit" name="submit"/>
             </form>
 
         </div>

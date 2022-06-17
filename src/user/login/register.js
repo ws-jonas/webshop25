@@ -21,7 +21,7 @@ export function Register(){
         const obj = {
             firstname: data.firstname,
             lastname: data.lastname,
-            email: data.email,
+            mail: data.mail,
             password: data.password,
             passwordConform: data.passwordConform,
         };
@@ -36,7 +36,7 @@ export function Register(){
         setData({
             firstname: '',
             lastname: '',
-            email: '',
+            mail: '',
             password: '',
 
         })

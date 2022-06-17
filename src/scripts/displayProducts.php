@@ -8,9 +8,8 @@ $postdata = file_get_contents("php://input");
 if(isset($postdata) && !empty($postdata)){
     $request = json_decode($postdata);
 
-    $mail = $request->mail;
-    $password = $request->password;
-    $sql = "SELECT * FROM user WHERE mail = '$mail' AND password = '$password'";
+
+    $sql = "SELECT * FROM products;
     $result = mysqli_query($db,$sql);
     $myArray = array();
     if ($result->num_rows > 0) {
@@ -19,7 +18,7 @@ if(isset($postdata) && !empty($postdata)){
           $myArray[] = $row;
         }
         echo json_encode($myArray);
-      
+
     } else {
       echo "0 results";
     }
@@ -27,5 +26,5 @@ if(isset($postdata) && !empty($postdata)){
 } else {
   echo "No Data";
 }
- 
+
 
