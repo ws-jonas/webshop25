@@ -75,3 +75,18 @@
     color: black;
 
 }
+
+.myBtn{
+    margin-right: 20px;
+}
+
+myLabel{
+    color: black !important;
+    text-decoration: none !important;
+}
+
+a{
+    color: black !important;
+    text-decoration: none !important;
+    margin-left: 20px;
+}

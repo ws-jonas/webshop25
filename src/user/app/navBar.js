@@ -54,7 +54,7 @@ export function NavBar(){
 
                 <nav className="navbar">
                     <div className="menuButtons">
-                        <Link className="loginButton" to={"/"}>TRIKOT25</Link>
+                        <Link className="myLabel" to={"/"}>TRIKOT25</Link>
                         <div className="buttons">
                             <LoggedIn />
                         </div>

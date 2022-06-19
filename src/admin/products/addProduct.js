@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from "axios";
+import "../../user/login/form.css"
+import {useNavigate} from "react-router-dom";
 
 export function AddProduct(){
 

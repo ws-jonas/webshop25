@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
+import "./form.css";
+
 
 export function Register(){
 
@@ -46,19 +48,30 @@ export function Register(){
 
     return(
 
-        <div>
+        <div className="registerForm">
             <form onSubmit={onSubmit}>
-                <h1>Register</h1>
-                <label>Vorname</label>
-                <input type="text" id="firstname" name="firstname" placeholder="Vorname" onChange={handleChange} value={data.firstname}/>
-                <label>Nachname</label>
-                <input type="text" id="lastname" name="lastname" placeholder="Nachname" onChange={handleChange} value={data.lastname}/>
-                <label>Email</label>
-                <input type="email" id="mail" name="mail" placeholder="Email-Adresse" onChange={handleChange} value={data.mail}/>
-                <br/>
-                <label>Passwort</label>
-                <input type="password" id="password" placeholder="Passwort" name="password" onChange={handleChange} value={data.password}/>
-                <input type="submit" value="submit" name="submit"/>
+                <h1>Registrieren</h1>
+                <table className="subTr">
+                    <tr>
+                        <th><label>Vorname:</label></th>
+                        <th><input type="text" id="firstname" name="firstname" placeholder="Vorname" onChange={handleChange} value={data.firstname}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Nachname:</label></th>
+                        <th><input type="text" id="lastname" name="lastname" placeholder="Nachname" onChange={handleChange} value={data.lastname}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Email:</label></th>
+                        <th><input type="email" id="mail" name="mail" placeholder="Email-Adresse" onChange={handleChange} value={data.mail}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Passwort:</label></th>
+                        <th><input type="password" id="password" placeholder="Passwort" name="password" onChange={handleChange} value={data.password}/></th>
+                    </tr>
+                    <tr>
+                        <input type="submit" value="Registrieren" name="submit" className="subTr"/>
+                    </tr>
+                </table>
             </form>
         </div>
     );

@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../index";
+import "./form.css";
 
 export function Login(){
 
@@ -43,16 +44,24 @@ export function Login(){
 
         <div>
 
-            <form onSubmit={onSubmit}>
-                <h1>Login</h1>
-                <label>Email</label>
-                <input type="email" id="mail" name="mail" placeholder="Email-Adresse" onChange={handleChange} value={data.mail}/>
-                <br/>
-                <label>Passwort</label>
-                <input type="password" id="password" placeholder="Passwort" name="password" onChange={handleChange} value={data.password}/>
-                <input type="submit" value="submit" name="submit"/>
-            </form>
-
+            <div className="registerForm">
+                <form onSubmit={onSubmit}>
+                    <h1>Login</h1>
+                    <table className="subTr">
+                        <tr>
+                            <th><label>Email:</label></th>
+                            <th><input type="email" id="mail" name="mail" placeholder="Email-Adresse" onChange={handleChange} value={data.mail}/></th>
+                        </tr>
+                        <tr>
+                            <th><label>Passwort:</label></th>
+                            <th><input type="password" id="password" placeholder="Passwort" name="password" onChange={handleChange} value={data.password}/></th>
+                        </tr>
+                        <tr>
+                            <input type="submit" value="Einloggen" name="submit" className="subTr"/>
+                        </tr>
+                    </table>
+                </form>
+            </div>
         </div>
     );
 }
