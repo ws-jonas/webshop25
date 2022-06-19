@@ -1,0 +1,9 @@
+.registerForm{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.subTr{
+    margin-top: 30px;
+}
