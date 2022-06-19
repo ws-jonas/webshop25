@@ -8,9 +8,8 @@ $postdata = file_get_contents("php://input");
 if(isset($postdata) && !empty($postdata)){
     $request = json_decode($postdata);
 
-    $productID = $request->productID;
-
-    $sql = "SELECT * FROM comments WHERE productID = '$productID'";
+    $userID = $request->userID;
+    $sql = "SELECT * FROM orders INNER JOIN products ON orders.productID = products.productID WHERE userID = '$userID'";
     $result = mysqli_query($db,$sql);
     $myArray = array();
     if ($result->num_rows > 0) {
@@ -21,11 +20,9 @@ if(isset($postdata) && !empty($postdata)){
         echo json_encode($myArray);
 
     } else {
-      echo "0 results";
+      echo "(NO ENTRY)";
     }
 
 } else {
-  echo "No Data";
+  echo "(NO DATA)";
 }
-
-

@@ -1,5 +1,5 @@
 <?php
-require 'connect.php';
+require'connect.php';
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -9,8 +9,8 @@ if(isset($postdata) && !empty($postdata)){
     $request = json_decode($postdata);
 
     $productID = $request->productID;
-
-    $sql = "SELECT * FROM comments WHERE productID = '$productID'";
+    $userID = $request->userID;
+    $sql = "SELECT * FROM orders WHERE productID = '$productID' AND userID = '$userID'";
     $result = mysqli_query($db,$sql);
     $myArray = array();
     if ($result->num_rows > 0) {
@@ -21,11 +21,9 @@ if(isset($postdata) && !empty($postdata)){
         echo json_encode($myArray);
 
     } else {
-      echo "0 results";
+      echo "(NO ENTRY)";
     }
 
 } else {
-  echo "No Data";
+  echo "(NO DATA)";
 }
-
-

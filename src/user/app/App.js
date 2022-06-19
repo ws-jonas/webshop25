@@ -23,8 +23,8 @@ function App() {
         axios.post('http://localhost/getProduct.php')
             .then((res) => {
 
-                console.log(res.data.substring("Connected successfully".length).slice(1, -1));
-                setProducts(JSON.parse(res.data.substring("Connected successfully".length).slice(1, -1)));
+                console.log(res.data.substring("Connected successfully".length));
+                setProducts(JSON.parse(res.data.substring("Connected successfully".length)));
             });
     }, []);
 

@@ -22,6 +22,18 @@ export function UserAdministration(){
             });
     }, []);
 
+    const deleteUser = (u) =>{
+        axios.post('http://localhost/deleteUser.php', u)
+            .then((res) => {
+
+                console.log(res.data.substring("Connected successfully".length).slice(1, -1));
+                setUser(JSON.parse(res.data.substring("Connected successfully".length)));
+                console.log(user);
+            }).catch(e => {
+            console.log(e);
+        });
+    }
+
     const getUser = () => (
         <div>
             {
@@ -40,7 +52,7 @@ export function UserAdministration(){
                             <view className="p-details">
                                 <text className="text">{u.mail}</text>
                             </view>
-                            <button className="detailsButton">löschen</button>
+                            <button className="detailsButton" onClick={()=>deleteUser(u)}>löschen</button>
                         </view>
                     )})
             }

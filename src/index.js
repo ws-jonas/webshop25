@@ -18,12 +18,13 @@ import {
     Route
 } from "react-router-dom";
 import {NavBar} from "./user/app/navBar";
+import {MyReviews} from "./user/Reviews/myReviews";
 
 export const UserContext = React.createContext(null);
 
 function CurrentUser(props){
     const [user, setUser] = useState(
-        {userID: 0,firstname: "", lastname: "" , password: "", mail: "", admin: 0}
+        {userID: "0",firstname: "", lastname: "" , password: "", mail: "", admin: "0"}
     );
     const value = { user, setUser };
 
@@ -43,6 +44,7 @@ root.render(
                   <Route path="/register" element={<Register />}/>
                   <Route path="/dashboard" element={<AdminDashboard />}/>
                   <Route path="/shoppingCart" element={<ShoppingCart />}/>
+                  <Route path="/myReviews" element={<MyReviews />}/>
                   <Route path="/productDetails" element={<ProductDetails />}/>
                   <Route path="/user" element={<UserAdministration />}/>
                   <Route path="/addP" element={<AddProduct />}/>

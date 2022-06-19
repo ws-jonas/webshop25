@@ -29,18 +29,18 @@ export function NavBar(){
             } else if (user.admin !== "0"){
                 return (
                     <div>
-                        <label>Hallo {user.firstname}</label>
-                        <button className="logout-button btn btn button-danger" onClick={logout}>logout</button>
-                        <Link to={"/shoppingCart"}><button className="cartButton myBtn">Cart</button></Link>
+                        <label className="userLabel">Hallo {user.firstname}</label>
+                        <button className="logout-button" onClick={logout}>logout</button>
                         <Link to={"/dashboard"}><button className="dashboardButton myBtn">Dashboard</button></Link>
                     </div>
                 );
             } else{
                 return (
                     <div>
-                        <label>Hallo {user.firstname}</label>
-                        <button className="logout-button btn btn-danger">logout</button>
+                        <label className="userLabel">Hallo {user.firstname}</label>
+                        <button className="logout-button" onClick={logout}>logout</button>
                         <Link to={"/shoppingCart"}><button className="cartButton myBtn">Cart</button></Link>
+                        <Link to={"/myReviews"}><button className="cartButton myBtn">Meine Bewertungen</button></Link>
                     </div>
             );
             }
