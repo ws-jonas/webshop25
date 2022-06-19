@@ -1,16 +1,13 @@
 import React, { useState, useRef } from 'react';
 import axios from "axios";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 export function EditProduct(){
 
     const location = useLocation();
+    const navigate = useNavigate();
     const product = location.state;
 
-    const selectedFile = useRef('');
-    const [image, setImage] = useState({
-        selectedImage: "",
-    });
 
     const [data, setData]=useState({
         productID: product.productID,
@@ -21,25 +18,14 @@ export function EditProduct(){
         image: product.image,
     })
 
+    //handles Input change
     const handleChange=(e)=>{
         setData({...data, [e.target.name]: e.target.value});
 
         console.log(data);
     }
 
-    const onFileChange= (e) => {
-        const files = e.target.files;
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(files[0]);
-
-        fileReader.onload = (event) => {
-            setImage({
-                selectedImage: event.target.result,
-            })
-        }
-        console.log(image.selectedImage);
-    }
-
+    //Submits Changes into Database
     const onSubmit=(e)=> {
         e.preventDefault();
         const obj = {
@@ -48,7 +34,7 @@ export function EditProduct(){
             stock: data.stock,
             description: data.description,
             price: data.price,
-            image: image.selectedImage,
+            image: data.image,
         };
 
         axios.post('http://localhost/editProduct.php', obj)
@@ -57,24 +43,40 @@ export function EditProduct(){
                 console.log(error.response)
             });
 
+        navigate("/");
+
 
     }
 
     return(
-        <div className="productEditPage">
+        <div className="registerForm">
             <form onSubmit={onSubmit}>
                 <h1>Produkt bearbeiten</h1>
-                <label>Name des Produkts:</label>
-                <input type="text" name="name" size="40" onChange={handleChange} value={data.name}/>
-                <label>Beschreibung:</label>
-                <input type="text" name="description" onChange={handleChange} value={data.description}/>
-                <label>Preis:</label>
-                <input type="number" step="0.01" name="price" onChange={handleChange} value={data.price}/>
-                <label>Anzahl:</label>
-                <input type="number" step="1" name="stock" onChange={handleChange} value={data.stock}/>
-                <label>Produktbild:</label>
-                <input type="file" name="image" onChange={onFileChange} value={data.image}/>
-                <input type="submit" value="Speichern"  />
+                <table className="subTr">
+                    <tr>
+                        <th><label>Name des Produkts:</label></th>
+                        <th><input type="text" name="name" size="40" onChange={handleChange} value={data.name}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Beschreibung:</label></th>
+                        <th><input type="text" name="description" onChange={handleChange} value={data.description}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Preis:</label></th>
+                        <th><input type="number" step="0.01" name="price" onChange={handleChange} value={data.price}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Anzahl:</label></th>
+                        <th><input type="number" step="1" name="stock" onChange={handleChange} value={data.stock}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Produktbild:</label></th>
+                        <th><input type="text" name="image" onChange={handleChange} value={data.image}/></th>
+                    </tr>
+                    <tr>
+                        <input type="submit" value="Speichern"  />
+                    </tr>
+                </table>
             </form>
         </div>
     );

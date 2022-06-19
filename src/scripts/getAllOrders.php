@@ -1,12 +1,13 @@
 <?php
-require  'connect.php';
+require 'connect.php';
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 $postdata = file_get_contents("php://input");
-$request = json_decode($postdata);
-$sql = "SELECT * FROM products";
+
+
+$sql = "SELECT * FROM orders ";
 $result = mysqli_query($db,$sql);
 $myArray = array();
 if ($result->num_rows > 0) {
@@ -17,8 +18,5 @@ if ($result->num_rows > 0) {
     echo json_encode($myArray);
 
 } else {
-  echo "0 results";
+  echo "(NO ENTRY)";
 }
-
-
-

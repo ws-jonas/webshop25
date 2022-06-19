@@ -10,12 +10,14 @@ export function AddUser(){
         password:""
     })
 
+    //handles Input Changes
     const handleChange=(e)=>{
         setData({...data, [e.target.name]: e.target.value});
 
         console.log(data);
     }
 
+    //Submits User into Database
     const onSubmit=(e)=> {
         e.preventDefault();
         const obj = {

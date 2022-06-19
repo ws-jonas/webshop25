@@ -49,6 +49,7 @@
 .product-title{
   width:100%;
   float: top;
+  text-decoration: none !important;
 }
 
 .p-details{

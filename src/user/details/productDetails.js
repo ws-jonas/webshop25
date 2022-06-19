@@ -16,9 +16,11 @@ export function ProductDetails(){
     const [text, setText] = useState("");
     const [title, setTitle] = useState("");
     const [bought, setBought] = useState(0);
+    const [deleted, setDeleted] = useState();
 
     const [reviews, setReviews] = useState([]);
 
+    //Retrieves Comments for Selected Product
     useEffect(() => {
         const obj = {
             productID: product.productID,
@@ -30,20 +32,21 @@ export function ProductDetails(){
                 console.log(res.data.substring("Connected successfully".length));
                 setReviews(JSON.parse(res.data.substring("Connected successfully".length)));
             });
-    }, []);
+    }, [deleted]);
 
+    //Deletes comment from Database
     const deleteComment = (review) =>{
         axios.post('http://localhost/deleteComment.php', review)
             .then((res) => {
 
-                console.log(res.data.substring("Connected successfully".length).slice(1, -1));
-                setUser(JSON.parse(res.data.substring("Connected successfully".length)));
-                console.log(user);
             }).catch(e => {
             console.log(e);
         });
+        setDeleted(review);
+
     }
 
+    //displays Comments
     const getReviews = () => (
 
         <div>
@@ -62,6 +65,7 @@ export function ProductDetails(){
         </div>
     );
 
+    //Checks if user writing comment has Bought Product
     const itemBought=()=> {
         const obj = {
             userID: user.userID,
@@ -82,6 +86,7 @@ export function ProductDetails(){
 
     }
 
+    //deletes Product from Database
     const deleteProduct = () =>{
         axios.post('http://localhost/deleteProduct.php', product)
             .then((res) => {
@@ -92,6 +97,7 @@ export function ProductDetails(){
         navigate("/");
     }
 
+    //Adds Product to Orders and decreases number of Products by one
     const buyProduct = () =>{
         axios.post('http://localhost/setOrder.php', {userID: user.userID, productID: product.productID})
             .then((res) => {
@@ -108,6 +114,7 @@ export function ProductDetails(){
         navigate("/shoppingCart");
     }
 
+    //Displays Comment Delete Button if logged in User has admin role
     function CommentDeleteButton(review){
         if(user.userID !== "0"){
             if(user.admin === "1"){
@@ -121,18 +128,18 @@ export function ProductDetails(){
 
     }
 
-
+    //Creation of User Buttons depending on Role
     function UserButtons(){
         if(user.userID !== "0"){
             if(user.admin === "1"){
                 return (
                     <div>
-                        <Link to={"/editP"} state={product}><button className="user-button">Edit</button></Link>
-                        <button className="user-button" onClick={deleteProduct}>Delete</button>
+                        <Link to={"/editP"} state={product}><button className="user-button">Bearbeiten</button></Link>
+                        <button className="user-button" onClick={deleteProduct}>löschen</button>
                     </div>
                 );
             } else{
-                return <button onClick={buyProduct}>Buy</button>
+                return <button onClick={buyProduct}>Kaufen</button>
             }
         } else{
             return
@@ -140,6 +147,7 @@ export function ProductDetails(){
 
     }
 
+    //Adds submited Comment to Database
     const commentSubmit=(e)=> {
         e.preventDefault();
         const obj = {
@@ -155,6 +163,8 @@ export function ProductDetails(){
             .catch(error => {
                 console.log(error.response)
             });
+
+        setDeleted(obj);
     }
 
 
@@ -171,6 +181,7 @@ export function ProductDetails(){
             <div className="productInformation">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">89,99€</p>
+                <p>{product.description}</p>
                 <p className="card-text">{product.stock} Produkte verfügbar</p>
                 <UserButtons />
             </div>

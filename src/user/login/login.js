@@ -12,12 +12,14 @@ export function Login(){
         password:""
     })
 
+    //handles changes of input
     const handleChange=(e)=>{
         setData({...data, [e.target.name]: e.target.value});
 
         console.log(data);
     }
 
+    //Handles User loggin / Databasae communication
     const onSubmit=(e)=> {
         e.preventDefault();
         const obj = {
@@ -34,14 +36,6 @@ export function Login(){
                 });
             navigate("/");
         }
-    }
-
-    const login = () =>{
-        axios.post('http://localhost/login.php', data)
-            .then((res) => {
-                console.log(res.data[0])
-                setUser(res.data);
-            });
     }
 
 

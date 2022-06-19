@@ -9,7 +9,7 @@ if(isset($postdata) && !empty($postdata)){
 
     $request = json_decode($postdata);
     $productID = $request->productID;
-    $sql = "SELECT (productID, name, stock, description, price) FROM products WHERE productID = '$productID'";
+    $sql = "SELECT * FROM products WHERE productID = '$productID'";
     $result = mysqli_query($db,$sql);
     $myArray = array();
     if ($result->num_rows > 0) {

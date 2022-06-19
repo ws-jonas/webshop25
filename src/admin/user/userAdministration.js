@@ -9,9 +9,11 @@ export function UserAdministration(){
 
 
     const [user, setUser] = useState([]);
+    const [deleted, setDeleted] = useState();
     const [searchValue, setSearchValue] = useState("");
     const {logUser, setLogUser} = useContext(UserContext);
 
+    //Retrieves Users from Database
     useEffect(() => {
         axios.post('http://localhost/displayUser.php')
             .then((res) => {
@@ -20,34 +22,37 @@ export function UserAdministration(){
                 setUser(JSON.parse(res.data.substring("Connected successfully".length)));
                 console.log(user);
             });
-    }, []);
+    }, [deleted]);
 
+    //Deletes User from Database
     const deleteUser = (u) =>{
         axios.post('http://localhost/deleteUser.php', u)
             .then((res) => {
 
                 console.log(res.data.substring("Connected successfully".length).slice(1, -1));
                 setUser(JSON.parse(res.data.substring("Connected successfully".length)));
-                console.log(user);
+                console.log(u);
             }).catch(e => {
             console.log(e);
         });
+        setDeleted(u);
     }
 
+    //Displays Users on Screen
     const getUser = () => (
         <div>
             {
                 user && user.filter((val) => {
                     if (searchValue === "") {
                         return val
-                    } else if (val.firstname.toLowerCase().includes(searchValue.toLowerCase())) {
+                    } else if (val.firstname.toLowerCase().includes(searchValue.toLowerCase()) || val.lastname.toLowerCase().includes(searchValue.toLowerCase())) {
                         return val
                     }
                 }).map(u=>{
                     return(
                         <view className="trikot">
                             <h3 className="product-title">
-                                {u.firstname}
+                                {u.firstname} {u.lastname}
                             </h3>
                             <view className="p-details">
                                 <text className="text">{u.mail}</text>

@@ -6,8 +6,7 @@ import {UserContext} from "../../index";
 export function MyReviews(){
 
     const navigate = useNavigate();
-    const [products, setProducts] = useState([]);
-    const [product, setProduct] = useState();
+    const [deleted, setDeleted] = useState([]);
     const [reviews, setReviews] = useState([])
     const {user, setUser} = useContext(UserContext);
 
@@ -22,23 +21,25 @@ export function MyReviews(){
                     setReviews(data);
 
                 }
-                console.log(products);
             });
-    }, []);
+    }, [deleted]);
 
-    const goToProduct = (review) =>{
 
-        products.forEach((item)=>{
-            if(item.productID === review.productID)
-            {
-                setProduct(item);
-            }}
-    );
+    //Deletes comment from Database
+    const deleteComment = (review) =>{
+        axios.post('http://localhost/deleteComment.php', review)
+            .then((res) => {
 
-        navigate("/productDetails", product);
+                console.log(res.data.substring("Connected successfully".length).slice(1, -1));
+
+            }).catch(e => {
+            console.log(e);
+        });
+        setDeleted(review);
     }
 
-    const getProducts = () => (
+    //displays Review
+    const getReviews = () => (
         <div>
             {
                 reviews && reviews.map(review=>{
@@ -48,6 +49,7 @@ export function MyReviews(){
                                 <h5 className="card-title">{review.title}</h5>
                                 <p className="card-text">{review.comment}</p>
                                 <p>{review.name}</p>
+                                <button className="detailsButton" type="submit" onClick={()=>deleteComment(review)}>löschen</button>
                             </div>
                         </div>
                     )})
@@ -57,7 +59,7 @@ export function MyReviews(){
 
     return(
         <div>
-            {getProducts()}
+            {getReviews()}
 
         </div>
     );

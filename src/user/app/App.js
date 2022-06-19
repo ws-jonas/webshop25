@@ -19,6 +19,7 @@ function App() {
 
     const [searchValue, setSearchValue] = useState("");
 
+    //Retrieves Products from Database
     useEffect(() => {
         axios.post('http://localhost/getProduct.php')
             .then((res) => {
@@ -28,6 +29,7 @@ function App() {
             });
     }, []);
 
+    //Displays Products on Screen
     const getProducts = () => (
         <div>
         {
@@ -39,17 +41,17 @@ function App() {
                 }
                 }).map(product=>{
                 return(
-                    <view className="trikot">
+                    <div className="trikot">
                         <h3 className="product-title">
                             {product.name}
                         </h3>
-                        <view className="p-details">
-                            <text className="text">{product.description}</text>
+                        <div className="p-details">
+                            <p className="text">{product.description}</p>
                             <img className="product-image" src={product.image} alt={product.name} height="100"/>
 
-                        </view>
+                        </div>
                         <Link to="/productDetails" state={product}><button className="detailsButton">Details</button></Link>
-                    </view>
+                    </div>
                 )})
         }
         </div>

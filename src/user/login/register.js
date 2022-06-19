@@ -10,12 +10,14 @@ export function Register(){
         password:""
     })
 
+    //handles Changes of Input
     const handleChange=(e)=>{
         setData({...data, [e.target.name]: e.target.value});
 
         console.log(data);
     }
 
+    //Adds User to Database
     const onSubmit=(e)=> {
         e.preventDefault();
         const obj = {

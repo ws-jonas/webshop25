@@ -3,12 +3,14 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import {UserContext} from "../../index";
 
+//Screen that shows Orders for logged in User
 export function ShoppingCart(){
 
     const [products, setProducts] = useState([]);
     const [orders, setOrders] = useState([])
     const {user, setUser} = useContext(UserContext);
 
+    //Retrieve Orders from logged in User
     useEffect(() => {
         axios.post('http://localhost/getOrder.php', user)
             .then((res) => {
@@ -25,6 +27,7 @@ export function ShoppingCart(){
             });
     }, []);
 
+    //Display Orders
     const getOrders = () => (
         <div>
             {

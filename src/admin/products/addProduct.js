@@ -3,10 +3,7 @@ import axios from "axios";
 
 export function AddProduct(){
 
-    const selectedFile = useRef('');
-    const [image, setImage] = useState({
-        selectedImage: "",
-    });
+    const navigate = useNavigate();
 
     const [data, setData]=useState({
         name:"",
@@ -16,25 +13,14 @@ export function AddProduct(){
         image: "",
     })
 
+    //handles Changes of Input
     const handleChange=(e)=>{
         setData({...data, [e.target.name]: e.target.value});
 
         console.log(data);
     }
 
-    const onFileChange= (e) => {
-        const files = e.target.files;
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(files[0]);
-
-        fileReader.onload = (event) => {
-            setImage({
-                selectedImage: event.target.result,
-            })
-        }
-        console.log(image.selectedImage);
-    }
-
+    //Adds Product into Database
     const onSubmit=(e)=> {
         e.preventDefault();
         const obj = {
@@ -42,7 +28,7 @@ export function AddProduct(){
             stock: data.stock,
             description: data.description,
             price: data.price,
-            image: image.selectedImage,
+            image: data.image,
         };
 
         axios.post('http://localhost/setProduct.php', obj)
@@ -51,7 +37,6 @@ export function AddProduct(){
                 console.log(error.response)
             });
 
-
         setData({
             name:"",
             stock:0,
@@ -59,23 +44,39 @@ export function AddProduct(){
             price:0.0,
             image: "",
         })
+        navigate("/")
     }
 
     return(
-        <div className="productEditPage">
+
+        <div className="registerForm">
             <form onSubmit={onSubmit}>
                 <h1>Produkt hinzufügen</h1>
-                <label>Name des Produkts:</label>
-                <input type="text" name="name" size="40" onChange={handleChange}/>
-                <label>Beschreibung:</label>
-                <input type="text" name="description" onChange={handleChange}/>
-                <label>Preis:</label>
-                <input type="number" step="0.01" name="price" onChange={handleChange}/>
-                <label>Anzahl:</label>
-                <input type="number" step="1" name="stock" onChange={handleChange}/>
-                <label>Produktbild:</label>
-                <input type="file" name="image" onChange={onFileChange} />
-                <input type="submit" value="Speichern"  />
+                <table className="subTr">
+                    <tr>
+                        <th><label>Name des Produkts:</label></th>
+                        <th><input type="text" name="name" size="40" onChange={handleChange}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Beschreibung:</label></th>
+                        <th><input type="text" name="description" onChange={handleChange}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Preis:</label></th>
+                        <th><input type="number" step="0.01" name="price" onChange={handleChange}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Anzahl:</label></th>
+                        <th><input type="number" step="1" name="stock" onChange={handleChange}/></th>
+                    </tr>
+                    <tr>
+                        <th><label>Produktbild:</label></th>
+                        <th><input type="text" name="image" onChange={handleChange}/></th>
+                    </tr>
+                    <tr>
+                        <input type="submit" value="Speichern"  />
+                    </tr>
+                </table>
             </form>
         </div>
     );

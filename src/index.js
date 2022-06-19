@@ -19,9 +19,8 @@ import {
 } from "react-router-dom";
 import {NavBar} from "./user/app/navBar";
 import {MyReviews} from "./user/Reviews/myReviews";
-
+//User is saved as Context in whole project
 export const UserContext = React.createContext(null);
-
 function CurrentUser(props){
     const [user, setUser] = useState(
         {userID: "0",firstname: "", lastname: "" , password: "", mail: "", admin: "0"}
@@ -31,6 +30,7 @@ function CurrentUser(props){
     return <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
 }
 
+//rendering application and handling Routing in between pages
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
