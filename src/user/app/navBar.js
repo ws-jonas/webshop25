@@ -50,9 +50,11 @@ export function NavBar(){
 
 
                 <nav className="navbar">
-                    <Link to={"/"}><button className="logoButton">TRIKOT25</button></Link>
                     <div className="menuButtons">
-                        <LoggedIn />
+                        <Link className="loginButton" to={"/"}>TRIKOT25</Link>
+                        <div className="buttons">
+                            <LoggedIn />
+                        </div>
                     </div>
                 </nav>
         </React.Fragment>

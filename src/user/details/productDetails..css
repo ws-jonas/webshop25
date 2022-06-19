@@ -15,12 +15,27 @@
 .comments{
     display: inline;
     width: 100%;
+
 }
+
 .addComment{
     width:100%;
 }
+
 .comment-input{
     width:100%;
     text-align: center;
     min-height: 50px;
+}
+
+.product-title{
+    text-decoration: underline solid darkblue;
+}
+
+.trikot{
+    border-bottom: solid black 2px;
+}
+
+.product-title{
+
 }
